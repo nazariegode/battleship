@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Battleship Game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Descripción
 
-## Available Scripts
+Battleship es un juego clásico de estrategia en el que dos jugadores intentan hundir los barcos del oponente adivinando sus posiciones en un tablero. Este proyecto es una implementación en React que permite a un jugador competir contra la CPU.
 
-In the project directory, you can run:
+## Características
 
-### `npm start`
+- Dos tableros: uno para el jugador y otro para la CPU.
+- Jugabilidad interactiva con feedback visual de los disparos (rojo para impactos y blanco para fallos).
+- Simulación de ataques de la CPU.
+- Muestra el número de impactos en el tablero del jugador y quién está ganando.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tecnologías Utilizadas
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React**: Para construir la interfaz del usuario.
+- **CSS**: Para estilizar los componentes y hacer la experiencia más atractiva.
 
-### `npm test`
+## Instalación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Sigue estos pasos para ejecutar el juego en tu máquina local:
 
-### `npm run build`
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/nazariegode/battleship.git
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Navega al directorio del proyecto:
+   ```bash
+   cd battleship
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3. Instala las dependencias:
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Inicia la aplicación:
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+5. Abre tu navegador y visita `http://localhost:3000` para jugar.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Cómo Jugar
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Elige un espacio en el tablero de la CPU y haz clic para disparar.
+2. Observa el resultado del ataque: si el color es rojo, has acertado; si es blanco, has fallado.
+3. La CPU también atacará después de tu turno.
+4. El juego continuará hasta que un jugador haya hundido todos los barcos del oponente.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contribuciones
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Si deseas contribuir a este proyecto, siéntete libre de hacer un fork del repositorio y enviar un pull request. Todas las contribuciones son bienvenidas.
 
-## Learn More
+## Licencia
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
