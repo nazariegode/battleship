@@ -1,0 +1,56 @@
+.board-container {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.board-numbers {
+  display: grid;
+  grid-template-columns: repeat(11, 32px);
+  margin-bottom: 2px;
+}
+
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.empty-cell {
+  width: 30px;
+  height: 30px;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(11, 30px); 
+  gap: 2px;
+}
+
+.letter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid gray;
+  background-color: lightblue;
+  cursor: pointer;
+}
+
+.cell.hit {
+  background-color: red; 
+}
+
+.cell.miss {
+  background-color: white; 
+}
