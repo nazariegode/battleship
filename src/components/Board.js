@@ -27,7 +27,7 @@ const Board = ({ gameBoard, fireTorpedo }) => {
                 }`}
                 onClick={() => fireTorpedo(rowIndex, colIndex)}
               >
-                {/* {cell === 1 && <span>🚢</span>} */}
+                {/* Aquí podrías agregar un ícono o una marca */}
               </div>
             ))}
           </React.Fragment>
