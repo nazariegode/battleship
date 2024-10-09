@@ -1,86 +1,127 @@
 import React, { useState } from "react";
 import Board from "./Board";
 
-// Función para generar un tablero vacío de 10x10
-const generateEmptyBoard = () => {
-  return Array(10).fill(null).map(() => Array(10).fill(null));
-};
+// Tableros predefinidos
+const predefinedPlayerBoard = [
+    [1, 1, 1, 1, 1, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0]
+];
 
-// Función para colocar los barcos en el tablero (lógica simplificada)
-const placeRandomShips = (board) => {
-  const newBoard = [...board];
-  let shipsPlaced = 0;
-  
-  while (shipsPlaced < 5) { // Colocamos 5 barcos de forma aleatoria
-    const row = Math.floor(Math.random() * 10);
-    const col = Math.floor(Math.random() * 10);
-    if (newBoard[row][col] === null) {
-      newBoard[row][col] = "ship"; // Colocamos un barco
-      shipsPlaced++;
-    }
-  }
-  return newBoard;
-};
+const predefinedCpuBoard = [
+    [0, 0, 0, 0, 1, 1, 1, 1, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 1, 1, 0, 0, 0, 0]
+];
 
 const Game = () => {
-  // Tableros para jugador y CPU
-  const [playerBoard, setPlayerBoard] = useState(placeRandomShips(generateEmptyBoard()));
-  const [cpuBoard, setCpuBoard] = useState(placeRandomShips(generateEmptyBoard()));
-  const [isPlayerTurn, setIsPlayerTurn] = useState(true); // Controla el turno del jugador
+    const [playerBoard, setPlayerBoard] = useState(predefinedPlayerBoard);
+    const [cpuBoard, setCpuBoard] = useState(predefinedCpuBoard);
+    const [playerHits, setPlayerHits] = useState(0);
+    const [cpuHits, setCpuHits] = useState(0);
+    const [message, setMessage] = useState("");
+    const [gameOver, setGameOver] = useState(false);
+    const [showShip, setShowShip] = useState(false); // Estado para mostrar/ocultar barcos
 
-  // Lógica para cuando el jugador hace clic en el tablero de la CPU
-  const handlePlayerClick = (row, col) => {
-    if (!isPlayerTurn || cpuBoard[row][col] === "hit" || cpuBoard[row][col] === "miss") return;
+    const fireTorpedo = (rowIndex, colIndex) => {
+        if (gameOver) return;
 
-    // Simula el disparo del jugador en el tablero del CPU
-    const newCpuBoard = [...cpuBoard];
-    newCpuBoard[row][col] = newCpuBoard[row][col] === "ship" ? "hit" : "miss";
-    setCpuBoard(newCpuBoard);
+        const updatedCpuBoard = [...cpuBoard];
+        if (updatedCpuBoard[rowIndex][colIndex] === 1) {
+            updatedCpuBoard[rowIndex][colIndex] = 2; // Impacto
+            setPlayerHits(playerHits + 1);
+        } else if (updatedCpuBoard[rowIndex][colIndex] === 0) {
+            updatedCpuBoard[rowIndex][colIndex] = 3; // Fallo
+        }
 
-    setIsPlayerTurn(false); // Cambia el turno al CPU
+        setCpuBoard(updatedCpuBoard);
+        cpuAttack();
+        checkGameOver();
+    };
 
-    // Turno del CPU después de un segundo
-    setTimeout(cpuTurn, 1000);
-  };
+    const cpuAttack = () => {
+        if (gameOver) return;
 
-  // Lógica para el turno del CPU
-  const cpuTurn = () => {
-    let row, col;
-    let validShot = false;
+        let attacked = false;
+        while (!attacked) {
+            const randomRow = Math.floor(Math.random() * 10);
+            const randomCol = Math.floor(Math.random() * 10);
+            const updatedPlayerBoard = [...playerBoard];
 
-    // El CPU busca una celda que no haya atacado antes
-    while (!validShot) {
-      row = Math.floor(Math.random() * 10);
-      col = Math.floor(Math.random() * 10);
-      if (playerBoard[row][col] !== "hit" && playerBoard[row][col] !== "miss") {
-        validShot = true; // Encuentra una celda no atacada
-      }
-    }
+            if (updatedPlayerBoard[randomRow][randomCol] === 0) {
+                updatedPlayerBoard[randomRow][randomCol] = 3; // Fallo del CPU
+                attacked = true;
+            } else if (updatedPlayerBoard[randomRow][randomCol] === 1) {
+                updatedPlayerBoard[randomRow][randomCol] = 2; // Impacto del CPU
+                setCpuHits(cpuHits + 1);
+                attacked = true;
+            }
 
-    const newPlayerBoard = [...playerBoard];
+            setPlayerBoard(updatedPlayerBoard);
+        }
+    };
 
-    // Simula el disparo del CPU al tablero del jugador
-    newPlayerBoard[row][col] = newPlayerBoard[row][col] === "ship" ? "hit" : "miss";
-    setPlayerBoard(newPlayerBoard);
-    setIsPlayerTurn(true); // Después del turno del CPU, es el turno del jugador
+    const checkGameOver = () => {
+        const allPlayerCellsAttacked = playerBoard.flat().every(cell => cell !== 1);
+        const allCpuCellsAttacked = cpuBoard.flat().every(cell => cell !== 1);
+
+        if (allPlayerCellsAttacked || allCpuCellsAttacked) {
+            setGameOver(true);
+            determineWinner();
+        }
+    };
+
+    const determineWinner = () => {
+        if (playerHits > cpuHits) {
+            setMessage("¡El jugador ganó!");
+        } else if (cpuHits > playerHits) {
+            setMessage("¡La CPU ganó!");
+        } else {
+            setMessage("¡Es un empate!");
+        }
+    };
+
+    const toggleShowShip = () => {
+      setShowShip(prev => !prev); // Cambia el estado al presionar el botón
   };
 
   return (
-    <div>
-      <h1>Battleship Game</h1>
-      <div style={{ display: "flex", justifyContent: "space-around" }}>
-        <div>
-          <h2>CPU Board (Click to Attack)</h2>
-          {/* El jugador hace clic en el tablero del CPU para atacar */}
-          <Board gameBoard={cpuBoard} fireTorpedo={handlePlayerClick} />
-        </div>
-        <div>
-          <h2>Your Board</h2>
-          {/* El tablero del jugador muestra el resultado de los ataques del CPU */}
-          <Board gameBoard={playerBoard} fireTorpedo={() => {}} /> {/* El jugador no puede interactuar con su propio tablero */}
-        </div>
+      <div>
+          <h1>Battleship Game</h1>
+          <button onClick={toggleShowShip}>
+              {showShip ? "Ocultar Barcos" : "Mostrar Barcos"}
+          </button>
+          <div className="boards">
+              <Board 
+                  gameBoard={playerBoard} 
+                  fireTorpedo={fireTorpedo} 
+                  isPlayerBoard={true} 
+                  showShip={showShip} // Pasa el estado al tablero
+              />
+              <Board 
+                  gameBoard={cpuBoard} 
+                  fireTorpedo={null} 
+                  isPlayerBoard={false} 
+                  showShip={false} // Opcional, ya que normalmente no mostrarías barcos de la CPU
+              />
+          </div>
+          <h2>{message}</h2>
+          {gameOver && <button onClick={() => window.location.reload()}>Reiniciar Juego</button>}
       </div>
-    </div>
   );
 };
 

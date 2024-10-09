@@ -1,4 +1,4 @@
-# b.board-container {
+.board-container {
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -24,9 +24,14 @@
   height: 30px;
 }
 
+.row {
+  display: flex; /* Usar flex para las filas */
+  align-items: center; /* Alinear verticalmente */
+}
+
 .board {
   display: grid;
-  grid-template-columns: repeat(11, 30px); 
+  grid-template-columns: repeat(11, 30px);
   gap: 2px;
 }
 
@@ -45,12 +50,35 @@
   border: 1px solid gray;
   background-color: lightblue;
   cursor: pointer;
+  display: flex; /* Centrar contenido */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  transition: background-color 0.3s; /* Añadir transición para efectos de hover */
+}
+
+.cell:hover {
+  background-color: #a1c4e8; /* Cambia el color de la celda al pasar el mouse */
 }
 
 .cell.hit {
-  background-color: red; 
+  background-color: red; /* Color para impactos */
 }
 
 .cell.miss {
-  background-color: white; 
+  background-color: lightgray; /* Color para fallos */
+}
+
+.cell.attacked {
+  background-color: #d3d3d3; /* Color que muestra que la celda fue atacada */
+  cursor: not-allowed; /* Cambia el cursor para indicar que no se puede hacer clic */
+}
+
+/* Nueva clase para mostrar los barcos del jugador */
+.cell.ship {
+  background-color: navy; /* Color para las celdas donde hay barcos */
+  border: 1px solid white; /* Añade un borde para destacarlo */
+}
+
+.cell.ship:hover {
+  background-color: navy; /* Evita que cambie de color al pasar el mouse cuando se muestran los barcos */
 }
