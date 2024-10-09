@@ -7,17 +7,14 @@
 ## 🕹️ ¿Cómo Jugar?
 
 ### Reglas Básicas:
-
-1. **Coloca tus Barcos**: Organiza tu flota en el tablero. Puedes colocar barcos en horizontal o vertical, ¡pero cuidado con los espías enemigos!
    
-2. **Dispara**: Elige celdas en el tablero del oponente para disparar torpedos. Recibirás un **"Hit"** si impactas y un **"Miss"** si fallas.
+1. **Dispara**: Elige celdas en el tablero del oponente para disparar torpedos. Recibirás un **"Hit"** si impactas y un **"Miss"** si fallas.
    
-3. **Gana**: ¡El objetivo es hundir todos los barcos del oponente antes de que ellos hundan los tuyos!
+2. **Gana**: ¡El objetivo es hundir todos los barcos del oponente antes de que ellos hundan los tuyos!
 
 ### Tipos de Celdas:
 
 - 🟥 **Impacto**: ¡Has acertado en el blanco!
-- 🟩 **Barco**: Un barco enemigo está en esta celda.
 - ⚪ **Agua**: Un disparo fallido, ¡a seguir intentando!
 
 ---
@@ -25,9 +22,8 @@
 ## 💻 Características Destacadas
 
 - **Interfaz Interactiva**: Disfruta de una experiencia de usuario dinámica y atractiva.
-- **Modos de Juego**: Juega contra la IA o desafía a un amigo en el modo multijugador.
-- **Visuales Coloridos**: Gráficos vibrantes que hacen que cada batalla sea emocionante.
-- **Responsive Design**: ¡Accede y juega en cualquier dispositivo, desde tu computadora hasta tu móvil!
+- **Modo de Juego**: Juega contra la CPU.
+- **Design**: ¡Actualmente para jugar desde tu computadora!
 
 ---
 
@@ -79,8 +75,8 @@ Este proyecto está bajo la [MIT License](LICENSE).
 
 ¡Mantente en contacto! Sígueme en mis redes sociales para más actualizaciones y juegos:
 
-- [GitHub](https://github.com/tuusuario)
-- [LinkedIn](https://www.linkedin.com/in/tuusuario)
+- [GitHub](https://github.com/nazariegode)
+- [LinkedIn](https://www.linkedin.com/in/nazariego)
 
 ---
 
